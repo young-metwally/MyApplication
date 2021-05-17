@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Islam\\\'s Android Labs</string>
+    <string name="hello_message">Hello world</string>
+    <string name="button_message" translatable="false">I\'m a button</string>
+</resources>
