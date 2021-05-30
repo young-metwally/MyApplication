@@ -2,18 +2,14 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,48 +18,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imageView6 = findViewById(R.id.imageView6);
 
-        TextView mytext = findViewById(R.id.textview);
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_SHORT;
+        Switch spin_switch = findViewById(R.id.spin_switch);
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        Toast.makeText(context, text, duration).show();
+        spin_switch.setOnCheckedChangeListener( (btn, isChecked) -> {
+            if (isChecked)
+            {
+                RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                rotate.setDuration(5000);
+                rotate.setRepeatCount(Animation.INFINITE);
+                rotate.setInterpolator(new LinearInterpolator());
 
-        Button mybutton = findViewById(R.id.mybutton);
-
-        EditText myEdit = findViewById(R.id.myEdit);
-        mybutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mytext.setText(myEdit.getText());
-                // Code here executes on main thread after user presses button
+                imageView6.startAnimation(rotate);
+            }
+            else {
+                imageView6.clearAnimation();
             }
         });
-
-        mytext.setText("This is new text");
-
-
-        CheckBox mycb = findViewById(R.id.thecheckbox);
-        mycb.setText("IM a checkbox");
-
-        Switch mySwitch = findViewById(R.id.myswitch);
-
-
-
-        RadioButton myRB = findViewById(R.id.myRButton);
-
-        ImageView myimg = findViewById(R.id.imageView);
-
-        ImageButton myImgBtn = findViewById(R.id.myImageButton);
-        myImgBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                // Code here executes on main thread after user presses button
-            }
-        });
+    }
 
 
     }
-}
