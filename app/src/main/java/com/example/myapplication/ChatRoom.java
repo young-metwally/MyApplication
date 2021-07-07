@@ -31,6 +31,7 @@ public class ChatRoom extends AppCompatActivity {
     RecyclerView chatList;
     ArrayList<ChatMessage> messages = new ArrayList<>();
     MyChatAdapter adt;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class ChatRoom extends AppCompatActivity {
         adt = new MyChatAdapter();
 
         MyOpenHelper opener = new MyOpenHelper( this );
-        SQLiteDatabase db = opener.getWritableDatabase();
+        db = opener.getWritableDatabase();
 
         // Reading from the database
         Cursor results = db.rawQuery("SELECT * FROM " + MyOpenHelper.TABLE_NAME + ";", null);
@@ -168,12 +169,21 @@ public class ChatRoom extends AppCompatActivity {
                                     .setAction("Undo", clk -> {
                                         messages.add(position, removedMessage);
                                         adt.notifyItemInserted(position);
+
+                                        db.execSQL("INSERT INTO " + MyOpenHelper.TABLE_NAME + " VALUES('" +
+                                                removedMessage.getId() + "','" +
+                                                removedMessage.getMessage() + "','" +
+                                                removedMessage.getSendOrReceive() + "','" +
+                                                removedMessage.getTimeSent() + "');");
                                     })
                                     .show();
 
 
                             messages.remove(position);
                             adt.notifyItemRemoved(position);
+
+                            // Delete from database
+                            db.delete(MyOpenHelper.TABLE_NAME, "_id=?", new String[]{Long.toString(removedMessage.getId())});
                         })
                         .create().show();
 
