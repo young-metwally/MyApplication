@@ -106,7 +106,7 @@ public class ChatRoom extends AppCompatActivity {
                         .setNegativeButton("No", null)
                         .setPositiveButton("Yes", (dialog, which) -> {
 
-                            position = getAbsoluteAdapterPosition();
+                            position = getAdapterPosition();
 
                             ChatMessage removedMessage = messages.get(position);
                             Snackbar.make(messageText, "You deleted message #" + position, Snackbar.LENGTH_LONG)
