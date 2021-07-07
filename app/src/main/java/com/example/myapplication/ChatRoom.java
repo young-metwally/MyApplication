@@ -59,6 +59,8 @@ public class ChatRoom extends AppCompatActivity {
             adt.notifyItemInserted(messages.size() - 1);
         });
 
+        MyOpenHelper opener = new MyOpenHelper( this );
+
     }
 
     private class ChatMessage {
