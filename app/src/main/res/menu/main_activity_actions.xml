@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/hide_views"
+        android:icon="@drawable/ic_cart"
+        android:title="Clear shopping cart"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/id_increase"
+        android:icon="@drawable/increase"
+        android:title="Increase font size"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/id_decrease"
+        android:icon="@drawable/decrease"
+        android:title="Decrease font size"
+        app:showAsAction="always" />
+
+</menu>

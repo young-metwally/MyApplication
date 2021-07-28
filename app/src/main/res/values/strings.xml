@@ -4,5 +4,7 @@
     <string name="button_message">I\'m a button</string>
     <string name="type_your_password">Type your password:</string>
     <string name="login">Login</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>
